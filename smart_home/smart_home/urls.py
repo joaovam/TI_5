@@ -23,8 +23,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 import sys
-sys.path.insert(0,str(Path(__file__).resolve().parent.parent))
-print(sys.path,"\n\n\n")
 from catalog.views import *
 
 urlpatterns = [
