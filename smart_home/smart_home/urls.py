@@ -28,6 +28,7 @@ from catalog.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^getData/', get_data),
+    re_path(r'^post_data/', post_data),
     re_path(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
 ]
 # Use static() to add url mapping to serve static files during development (only)
