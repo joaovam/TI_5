@@ -1,0 +1,13 @@
+.mat-card{
+    margin: 50px;
+    display: flex;
+    justify-content:space-evenly;  
+    flex-wrap: wrap;  
+}
+.mat-card-body{
+    display: flex;
+    float: right;    
+    flex-wrap: wrap;
+
+    
+}
