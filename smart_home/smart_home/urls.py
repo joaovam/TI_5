@@ -18,17 +18,23 @@ from pathlib import Path
 
 
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 import sys
 from catalog.views import *
+from rest_framework import routers
+from catalog import views
+
+router = routers.DefaultRouter()
+router.register(r'ExampleModel', views.ExampleModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^getData/', get_data),
-    re_path(r'^post_data/', post_data),
+    #path('getData/',getData),
+    path('',include(router.urls)),
+    #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
 ]
 # Use static() to add url mapping to serve static files during development (only)
