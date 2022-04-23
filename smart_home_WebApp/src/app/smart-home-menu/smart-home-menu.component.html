@@ -1,0 +1,40 @@
+
+<div class="menu" align ="center" >
+
+<div color= "#6FE6B0" class="example-button-container mt-5"  >
+    <button mat-fab disbled aria-label="Example icon button with a home icon" style="background-color: white; color:#6FE6B0">
+      <mat-icon>home</mat-icon>
+    </button>
+</div>
+<div class="cards">
+    <a [routerLink] = "['/smartHome/lights']" >
+        <mat-card>
+            <div class ="mat-card-body">
+                <mat-icon class="ml-5 mr-5" style="margin-right: 50px;">wb_incandescent</mat-icon>
+                <p class="ml-5 mr-5" style="margin-right: 50px;">LÂMPADAS</p>
+        
+            </div>
+        </mat-card>
+    </a>
+    <a [routerLink] = "['/smartHome/ac']" >
+    <mat-card>
+        <div class ="mat-card-body">
+            <mat-icon class="ml-5 mr-5" style="margin-right: 50px;">ac_unit</mat-icon>
+            <p class="ml-5 mr-5" style="margin-right: 50px; float: left;">AR CONDICIONADO</p>
+        </div>
+    </mat-card>
+</a>
+<a [routerLink] = "['/smartHome/smartLock']" >
+    <mat-card>
+        <div class ="mat-card-body">
+            <mat-icon class="ml-5 mr-5" style="margin-right: 50px;">meeting_room</mat-icon>
+            <p class="ml-5 mr-5" style="margin-right: 50px;">FECHADURAS</p>
+    
+        </div>
+    </mat-card>
+</a>
+</div>
+
+  
+
+</div>
