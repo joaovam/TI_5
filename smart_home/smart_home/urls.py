@@ -33,6 +33,8 @@ router.register(r'ExampleModel', views.ExampleModelViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('getData/',getData),
+    path('turn_light_on/',turn_light_on),
+    path("close_connection/",close_connection),
     path('',include(router.urls)),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
