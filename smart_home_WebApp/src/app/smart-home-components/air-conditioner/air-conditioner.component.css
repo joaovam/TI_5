@@ -4,9 +4,7 @@
 .temperatura{
     display: inline;
 }
-.mat-card-actions{
-    display: inline;
-}
+
 h5 {
     color: white;
 }
@@ -17,7 +15,7 @@ mat-card{
 .cards{
     margin-top: 4em;
     display: inline-block;
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
     padding-left: 8%;  
 }

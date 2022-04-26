@@ -9,10 +9,11 @@
 </div>
 
 <div class="cards" *ngFor="let ac of air_conditioners">
-    <mat-card>
-        <mat-card-title>{{ac.name}}</mat-card-title>
-        <div class="divide" style="display: inline;">
-            <div class="on" *ngIf="!ac._status">
+    <mat-card style="align-items: center;">
+        <mat-card-title style="padding-left: 30%; margin-bottom: 2em;">{{ac.name}}</mat-card-title>
+        <div class = "row">
+        <div class="col-6" style="padding-left: 2em;" >
+            <div class="on col-6" *ngIf="!ac._status">
                 <div class="status_on ml-4">
                     <mat-card-subtitle>status : desligado</mat-card-subtitle>
                     <mat-card-actions>
@@ -23,7 +24,7 @@
                     </mat-card-actions>
                 </div>
             </div>
-            <div class="off" *ngIf="ac._status">
+            <div class="off col-6" *ngIf="ac._status">
                 <div class="status_off ml-4">
                     <mat-card-subtitle> status : ligado</mat-card-subtitle>
                     <mat-card-actions>
@@ -35,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div style="display: inline;">
+        <div class="col-6" >
             <div class="temperatura">
                 <form>
                     <mat-form-field class="example-full-width" appearance="fill">
@@ -48,5 +49,6 @@
                     style="color: white; background-color: #6FE6B0;">Salvar</button>
             </div>
         </div>
+    </div>
     </mat-card>
 </div>
