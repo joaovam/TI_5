@@ -18,10 +18,7 @@ import {MatCardModule} from '@angular/material/card';
     SmartHomeMenuComponent,
     LightsComponent,
     AirConditionerComponent,
-    SmartDoorLockComponent,
-
-  
-    
+    SmartDoorLockComponent,   
 
   ],
   imports: [

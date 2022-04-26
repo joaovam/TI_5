@@ -10,18 +10,18 @@ export class SmartHomeMenuComponent implements OnInit {
 
   constructor() { }
 
-  _items : MenuItem[] = [];
+  _items: MenuItem[] = [];
 
   ngOnInit(): void {
 
-    this.makeMenuItem('LÂMPADAS', 'wb_incandescent',  '/smartHome/lights');
+    this.makeMenuItem('LÂMPADAS', 'wb_incandescent', '/smartHome/lights');
     this.makeMenuItem('AR CONDICIONADO', 'ac_unit', '/smartHome/ac');
     this.makeMenuItem('FECHADURAS', 'meeting_room', '/smartHome/smartLock');
-    
-   
+
+
   }
 
-  makeMenuItem(name:string, icon : string, routerLink : string){
+  makeMenuItem(name: string, icon: string, routerLink: string) {
     let menu_items = new MenuItem();
     menu_items.name = name;
     menu_items._icon = icon;

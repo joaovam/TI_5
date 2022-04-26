@@ -2,15 +2,23 @@
 
 
 
-html, body { height: 100%;align-items: center; background-color: #6FE6B0; height:"auto"; width: "auto";}
+html,
 body {
-     
-        margin: 0; 
-     font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 100%;
+    align-items: center;
+    background-color: #6FE6B0;
+    height: "auto";
+    width: "auto";
+    font-family: 'Verdana, sans-serif';
+}
 
-    }
+body {
+    align-items: center;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 
-button{
+}
+
+button {
     background-color: #6FE6B0;
     color: #6FE6B0;
 }

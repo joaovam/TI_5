@@ -1,23 +1,19 @@
-
-<div class="menu" align ="center" >
-
-<div color= "#6FE6B0" class="example-button-container mt-5"  >
-    <button mat-fab disbled aria-label="Example icon button with a home icon" style="background-color: white; color:#6FE6B0">
-      <mat-icon>home</mat-icon>
-    </button>
-    <h5  class="mt-4">MY SMART HOME</h5>
-</div>
-<div class="cards" *ngFor = "let item of _items">
-    <a [routerLink] = "item.routerLink" >
-        <mat-card>
-            <div class ="mat-card-body">
-                <mat-icon class="ml-5 mr-5" style="margin-right: 3em;">{{item.icon}}</mat-icon>
-                <p class="ml-5 mr-5" style="margin-right: 3em;">{{item.name}}</p>        
-            </div>
-        </mat-card>
-    </a>
-</div>
-
-  
-
+<div class="menu" align="center">
+    <div color="#6FE6B0" class="example-button-container mt-5">
+        <button mat-fab disbled aria-label="Example icon button with a home icon"
+            style="background-color: white; color:#6FE6B0">
+            <mat-icon>home</mat-icon>
+        </button>
+        <h5 class="mt-4">MY SMART HOME</h5>
+    </div>
+    <div class="cards" *ngFor="let item of _items">
+        <a [routerLink]="item.routerLink">
+            <mat-card>
+                <div class="mat-card-body">
+                    <mat-icon class="ml-5 mr-5" style="margin-right: 3em;">{{item.icon}}</mat-icon>
+                    <p class="ml-5 mr-5" style="margin-right: 3em;">{{item.name}}</p>
+                </div>
+            </mat-card>
+        </a>
+    </div>
 </div>
