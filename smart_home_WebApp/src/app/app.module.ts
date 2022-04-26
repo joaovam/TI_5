@@ -8,9 +8,12 @@ import { AirConditionerComponent } from './smart-home-components/air-conditioner
 import { LightsComponent } from './smart-home-components/lights/lights.component';
 import { SmartDoorLockComponent } from './smart-home-components/smart-door-lock/smart-door-lock.component';
 import { SmartHomeMenuComponent } from './smart-home-menu/smart-home-menu.component';
+import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import {MatCardModule} from '@angular/material/card';
     BrowserModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule,
+    MatCardModule,  
+    MatInputModule,
+    BrowserAnimationsModule,
+    FormsModule,
     RouterModule.forRoot([
       {
         path: '', redirectTo : 'smartHome/menu', pathMatch : 'full'

@@ -14,7 +14,7 @@ export class LightsComponent implements OnInit {
   ngOnInit(): void {
 
     this.lights.push(this.makeLight('0', 'luz 1', false, 'luz', 0));
-    this.lights.push(this.makeLight('0', 'luz 2', true, 'luz', 0));
+    this.lights.push(this.makeLight('1', 'luz 2', true, 'luz', 0));
     
     
   }
@@ -36,5 +36,5 @@ export class LightsComponent implements OnInit {
       device._status = true;
     console.log("to aqui");
   }
-  
+
 }
