@@ -1,1 +1,54 @@
-<p>air-conditioner works!</p>
+<div class="menu" align="center">
+    <div color="#6FE6B0" class="example-button-container mt-5">
+        <button mat-fab disbled aria-label="Example icon button with a home icon"
+            style="background-color: white; color:#6FE6B0">
+            <mat-icon>ac_unit</mat-icon>
+        </button>
+        <h5 class="mt-4">AR CONDICIONADO</h5>
+    </div>
+</div>
+
+<div class="cards" *ngFor="let ac of air_conditioners">
+    <mat-card style="align-items: center;">
+        <mat-card-title style="padding-left: 30%; margin-bottom: 2em;">{{ac.name}}</mat-card-title>
+        <div class = "row">
+        <div class="col-6" style="padding-left: 2em;" >
+            <div class="on col-6" *ngIf="!ac._status">
+                <div class="status_on ml-4">
+                    <mat-card-subtitle>status : desligado</mat-card-subtitle>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)=changeState(ac); style="background-color: white;">
+                            <mat-icon style="color: #6FE6B0;">wb_incandescent</mat-icon>
+                        </button>
+                        <p>LIGAR</p>
+                    </mat-card-actions>
+                </div>
+            </div>
+            <div class="off col-6" *ngIf="ac._status">
+                <div class="status_off ml-4">
+                    <mat-card-subtitle> status : ligado</mat-card-subtitle>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)=changeState(ac);>
+                            <mat-icon>wb_incandescent</mat-icon>
+                        </button>
+                        <p>DESLIGAR</p>
+                    </mat-card-actions>
+                </div>
+            </div>
+        </div>
+        <div class="col-6" >
+            <div class="temperatura">
+                <form>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Temperatura</mat-label>
+                        <input type="number" name="temp" [(ngModel)]="ac.temperature" matInput placeholder="Ex. 20"
+                            (change)="print()">
+                    </mat-form-field>
+                </form>
+                <button mat-raised-button (click)="print()"
+                    style="color: white; background-color: #6FE6B0;">Salvar</button>
+            </div>
+        </div>
+    </div>
+    </mat-card>
+</div>

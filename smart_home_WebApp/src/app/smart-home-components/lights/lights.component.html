@@ -1,1 +1,40 @@
-<p>lights works!</p>
+<div class="menu" align="center">
+    <div color="#6FE6B0" class="example-button-container mt-5">
+        <button mat-fab disbled aria-label="Example icon button with a home icon"
+            style="background-color: white; color:#6FE6B0">
+            <mat-icon>wb_incandescent</mat-icon>
+        </button>
+        <h5 class="mt-4">LÂMPADAS</h5>
+    </div>
+</div>
+
+<div class="cards" *ngFor="let light of lights">
+    <a [routerLink]="">
+        <mat-card>
+            <mat-card-title>{{light.name}}</mat-card-title>
+            <div class="on" *ngIf="!light._status">                
+                <div class="status_on ml-4">
+                    <mat-card-subtitle>status : desligada</mat-card-subtitle>
+                    <mat-card-actions>
+                    <button mat-raised-button (click)=changeState(light); style="background-color: white;">
+                        <mat-icon style="color: #6FE6B0;">wb_incandescent</mat-icon>
+                    </button>
+                    <p>LIGAR</p>
+                </mat-card-actions>
+                </div>
+            </div>
+            <div class="off" *ngIf="light._status">
+                <div class="status_off ml-4">
+                    <mat-card-subtitle> status : ligada</mat-card-subtitle>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)=changeState(light);>
+                            <mat-icon>wb_incandescent</mat-icon>
+                        </button>
+                        <p>DESLIGAR</p>
+                    </mat-card-actions>
+                </div>
+            </div>
+
+        </mat-card>
+    </a>
+</div>

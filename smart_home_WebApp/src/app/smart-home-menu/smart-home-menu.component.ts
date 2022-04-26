@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from './menu-item';
 
 @Component({
   selector: 'app-smart-home-menu',
@@ -9,13 +10,23 @@ export class SmartHomeMenuComponent implements OnInit {
 
   constructor() { }
 
-  _options = new Map();
+  _items: MenuItem[] = [];
 
   ngOnInit(): void {
-    this._options.set('wb_incandescent', 'LÂMPADAS');
-    this._options.set('ac_unit', 'AR CONDICIONADO');
-    this._options.set('meeting_room', 'FECHADURAS');
-    this._options.forEach((oi, tchau) => console.log(oi, tchau));
+
+    this.makeMenuItem('LÂMPADAS', 'wb_incandescent', '/smartHome/lights');
+    this.makeMenuItem('AR CONDICIONADO', 'ac_unit', '/smartHome/ac');
+    this.makeMenuItem('FECHADURAS', 'meeting_room', '/smartHome/smartLock');
+
+
+  }
+
+  makeMenuItem(name: string, icon: string, routerLink: string) {
+    let menu_items = new MenuItem();
+    menu_items.name = name;
+    menu_items._icon = icon;
+    menu_items._routerLink = routerLink;
+    this._items.push(menu_items);
   }
 
 }

@@ -7,7 +7,9 @@
 .mat-card-body{
     display: flex;
     float: right;    
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
+}
 
-    
+h5 {
+    color: white;
 }
