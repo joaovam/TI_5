@@ -13,5 +13,6 @@ mat-card{
     display: inline-block;
     width: 50%;
     height: 50%;
-    padding-left: 8%;  
+    padding-left: 8%;
+    text-align: center
 }
