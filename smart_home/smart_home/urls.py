@@ -27,14 +27,18 @@ from catalog.views import *
 from rest_framework import routers
 from catalog import views
 
+
 router = routers.DefaultRouter()
 router.register(r'ExampleModel', views.ExampleModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('getData/',getData),
-    path('turn_light_on/',turn_light_on),
-    path("close_connection/",close_connection),
+    path('changeOptions',change_option),
+    path('devices',ret_devices),
+    path('lights',ret_lights),
+    path('lockers',ret_lockers),
+    path('ac',ret_AC),
     path('',include(router.urls)),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")

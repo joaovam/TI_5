@@ -14,19 +14,24 @@ class ExampleModel(models.Model):
 
 # from aenum import Enum  # for the aenum version
 
-class Device:
+class Device(models.Model):
     status: bool
     name: str
     ID: str
     temperature: int
     type_device: str
+    objects = models.Manager()
 
-    def __init__(self, status: bool, name: str, ID: str, type_device: str, temperature: int=None):
+    def __init__(self, status: bool, name: str, ID: str, type_device: str, temperature: int = None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.status = status
         self.name = name
         self.ID = ID
         self.temperature = temperature
         self.type_device = type_device
+
+    # def __str__(self):
+    #     return self.name
 
 
 
