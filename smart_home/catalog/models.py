@@ -14,13 +14,13 @@ class ExampleModel(models.Model):
 
 # from aenum import Enum  # for the aenum version
 
-class Device(models.Model):
+class Device:
     status: bool
     name: str
     ID: str
     temperature: int
     type_device: str
-    objects = models.Manager()
+    #objects = models.Manager()
 
     def __init__(self, status: bool, name: str, ID: str, type_device: str, temperature: int = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -49,8 +49,8 @@ class Arduino:
         self.address = (ip, port)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.devices = []
-        self.devices.append(Device(False,"luz 1","0","luz"))
-        self.devices.append(Device(False, "luz 2", "1", "luz"))
+        self.devices.append(Device(False,"luz da sala","0","luz"))
+        self.devices.append(Device(False, "luz do quarto", "1", "luz"))
         self.devices.append(Device(False,"Ar Condicionado","2","AC",20))
         self.devices.append(Device(False,"Tranca da porta","3","Tranca"))
 

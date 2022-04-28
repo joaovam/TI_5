@@ -22,15 +22,18 @@ def change_option(request):
     print("Em produção")
 
 def ret_devices(request):
+
     response = []
     for dev in arduino.devices:
         aux = dev.__dict__
-        aux.pop('_state')
-        aux.pop('id')
+        print(dev)
+        print(aux)
+        # aux.pop('_state')
+        # aux.pop('id')
         print(aux)
         response.append(aux)
 
-    print(response)
+    #print(response)
     # for dev in arduino.devices:
     return JsonResponse(dict(Devices=response))
 
@@ -39,8 +42,8 @@ def ret_lights(request):
     for dev in arduino.devices:
         if dev.type_device=='luz':
             aux = dev.__dict__
-            aux.pop('_state')
-            aux.pop('id')
+            #aux.pop('_state')
+            #aux.pop('id')
             print(aux)
             response.append(aux)
     print(response)
