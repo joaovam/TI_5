@@ -9,11 +9,12 @@ import { LightsComponent } from './smart-home-components/lights/lights.component
 import { SmartDoorLockComponent } from './smart-home-components/smart-door-lock/smart-door-lock.component';
 import { SmartHomeMenuComponent } from './smart-home-menu/smart-home-menu.component';
 import { FormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,39 +22,40 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SmartHomeMenuComponent,
     LightsComponent,
     AirConditionerComponent,
-    SmartDoorLockComponent,   
+    SmartDoorLockComponent,
 
   ],
   imports: [
     BrowserModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule,  
+    MatCardModule,
     MatInputModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
-        path: '', redirectTo : 'smartHome/menu', pathMatch : 'full'
+        path: '', redirectTo: 'smartHome/menu', pathMatch: 'full'
       },
       {
-        path : 'smartHome/menu', component : SmartHomeMenuComponent 
+        path: 'smartHome/menu', component: SmartHomeMenuComponent
       },
-       
-       {
-         path : 'smartHome/lights', component: LightsComponent
-       }, 
-       {
-        path : 'smartHome/ac', component: AirConditionerComponent
-      }, 
+
       {
-        path : 'smartHome/smartLock', component: SmartDoorLockComponent
+        path: 'smartHome/lights', component: LightsComponent
       },
       {
-        path: '**', component : Error404Compnent
-      }, 
-    
-   
+        path: 'smartHome/ac', component: AirConditionerComponent
+      },
+      {
+        path: 'smartHome/smartLock', component: SmartDoorLockComponent
+      },
+      {
+        path: '**', component: Error404Compnent
+      },
+
+
     ])
   ],
   exports: [MatButtonModule],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LightService } from 'src/app/service/light-service.service';
 import { Device } from '../device';
 
 @Component({
@@ -8,33 +9,46 @@ import { Device } from '../device';
 })
 export class LightsComponent implements OnInit {
 
-  constructor() { }
 
-  lights : Device[] = [];  
+  constructor(private lightService: LightService) { }
+
+  lights: Device[] = [];
   ngOnInit(): void {
 
-    this.lights.push(this.makeLight('0', 'luz 1', false, 'luz', 0));
-    this.lights.push(this.makeLight('1', 'luz 2', true, 'luz', 0));
-    
-    
+    this.retrieveAll();
+
+
   }
 
-  makeLight(id : string, name: string , status : boolean, type : string, temperature : number) {
-    let light  = new Device();
-    light.id = id;
+  makeLight(id: string, name: string, status: boolean, type: string, temperature: number | null) {
+    let light = new Device();
+    light.ID = id;
     light.name = name;
     light._status = status;
     light._temperature = 0;
-    light.type = type;
+    light.type_device = type;
     return light;
   }
-  changeState(device:Device){
-    
-    if(device._status == true)
+  changeState(device: Device) {
+
+    if (device._status == true)
       device._status = false;
     else
       device._status = true;
-    console.log("to aqui");
+    console.log("to aqui" + device._status);
+  }
+
+  retrieveAll(): void {
+    this.lightService.retrieveAll().subscribe({
+      next: lights => {
+
+        this.lights = lights.Devices;
+        console.log(lights)
+
+      },
+      error: err => console.log('Error', err)
+    });
+
   }
 
 }

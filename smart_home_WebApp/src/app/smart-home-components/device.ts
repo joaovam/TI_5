@@ -1,38 +1,45 @@
 
 
-export class Device{
+export class Device {
 
     _status: boolean = true;
     _name: string = "";
-    _id: string = "";
-    _temperature: number = 0;
-    _type: string = ""; 
+    _ID: string = "";
+    _temperature: number | null = 0;
+    _type_device: string = "";
 
-    set name(name : string){
+    set name(name: string) {
         this._name = name;
     }
-    set id(id : string){
-        this._id = id;
+    set ID(id: string) {
+        this._ID = id;
     }
-    set temperature(temperature : number){
+    set temperature(temperature: number | null) {
         this._temperature = temperature;
     }
-    set type(type : string){
-        this._type = type;
+    set type_device(type: string) {
+        this._type_device = type;
     }
 
-    get  type(){
-        return this._type;
+    set status(type: string) {
+        this._type_device = type;
     }
 
-    get  temperature(){
+    get status() {
+        return this._type_device;
+    }
+    get type_device() {
+        return this._type_device;
+    }
+
+    get temperature() {
         return this._temperature;
     }
 
-    get  id(){
-        return this._id;
+    get ID() {
+        return this._ID;
     }
-    get name(){
+    get name() {
         return this._name;
     }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AcService } from 'src/app/service/ac-service.service';
 import { Device } from '../device';
 
 @Component({
@@ -9,37 +10,51 @@ import { Device } from '../device';
 export class AirConditionerComponent implements OnInit {
 
 
-    constructor() { }
-  
-    air_conditioners : Device[] = [];  
-    ngOnInit(): void {
-      this.air_conditioners.push(this.makeAC('2', 'Ar Condicionado', false, 'AC', 20));
-      
-      
-    }
-  
-    makeAC(id : string, name: string , status : boolean, type : string, temperature : number) {
-      let AC  = new Device();
-      AC.id = id;
-      AC.name = name;
-      AC._status = status;
-      AC._temperature = temperature;
-      AC.type = type;
-      return AC;
-    }
-    changeTemperature(device:Device, temperature:number){
-        device.temperature = temperature;
-    }
-    changeState(device:Device){
-    
-      if(device._status == true)
-        device._status = false;
-      else
-        device._status = true;
-      console.log("to aqui");
-    }
-    print(){
-      console.log(this.air_conditioners[0].temperature);
-    }
+  constructor(private acService: AcService) { }
+
+  air_conditioners: Device[] = [];
+  ngOnInit(): void {
+    this.retrieveAll();
+    //this.air_conditioners.push(this.makeAC('2', 'Ar Condicionado', false, 'AC', null));
+
+
+  }
+
+  makeAC(id: string, name: string, status: boolean, type: string, temperature: number | null) {
+    let AC = new Device();
+    AC.ID = id;
+    AC.name = name;
+    AC._status = status;
+    AC._temperature = temperature;
+    AC.type_device = type;
+    return AC;
+  }
+  changeTemperature(device: Device, temperature: number) {
+    device.temperature = temperature;
+  }
+  changeState(device: Device) {
+
+    if (device._status == true)
+      device._status = false;
+    else
+      device._status = true;
+    console.log("to aqui");
+  }
+  print() {
+    console.log(this.air_conditioners[0].temperature);
+  }
+
+  retrieveAll(): void {
+    this.acService.retrieveAll().subscribe({
+      next: air_conditioners => {
+
+        this.air_conditioners = air_conditioners.Devices;
+        console.log(air_conditioners)
+
+      },
+      error: err => console.log('Error', err)
+    });
+
+  }
 
 }

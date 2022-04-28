@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocksService } from 'src/app/service/locks.service';
 import { Device } from '../device';
 
 @Component({
@@ -8,24 +9,25 @@ import { Device } from '../device';
 })
 export class SmartDoorLockComponent implements OnInit {
 
-  constructor() { }
+  constructor(private locksService: LocksService) { }
 
   smartDoor: Device[] = [];
   ngOnInit(): void {
 
-    this.smartDoor.push(this.makeSmartDoor('0', 'porta 1', false, 'Tranca', 0));
-    this.smartDoor.push(this.makeSmartDoor('1', 'porta 2', true, 'Tranca', 0));
+    this.retrieveAll();
+    //this.smartDoor.push(this.makeSmartDoor('0', 'porta 1', false, 'Tranca', 0));
+    //this.smartDoor.push(this.makeSmartDoor('1', 'porta 2', true, 'Tranca', 0));
 
 
   }
 
   makeSmartDoor(id: string, name: string, status: boolean, type: string, temperature: number) {
     let smartDoorLock = new Device();
-    smartDoorLock.id = id;
+    smartDoorLock.ID = id;
     smartDoorLock.name = name;
     smartDoorLock._status = status;
     smartDoorLock._temperature = 0;
-    smartDoorLock.type = type;
+    smartDoorLock.type_device = type;
     return smartDoorLock;
   }
   changeState(device: Device) {
@@ -34,6 +36,18 @@ export class SmartDoorLockComponent implements OnInit {
       device._status = false;
     else
       device._status = true;
+  }
+
+  retrieveAll(): void {
+    this.locksService.retrieveAll().subscribe({
+      next: smartDoor => {
+        this.smartDoor = smartDoor.Devices;
+        console.log(smartDoor);
+
+      },
+      error: err => console.log('Error', err)
+    });
+
   }
 
 }

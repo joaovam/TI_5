@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DevicesService } from '../service/devices-service.service';
+import { Device } from '../smart-home-components/device';
 import { MenuItem } from './menu-item';
 
 @Component({
@@ -8,12 +10,13 @@ import { MenuItem } from './menu-item';
 })
 export class SmartHomeMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private devicesService: DevicesService) { }
 
+  _devices: Device[] = [];
   _items: MenuItem[] = [];
 
   ngOnInit(): void {
-
+    this.retrieveAll();
     this.makeMenuItem('LÂMPADAS', 'wb_incandescent', '/smartHome/lights');
     this.makeMenuItem('AR CONDICIONADO', 'ac_unit', '/smartHome/ac');
     this.makeMenuItem('FECHADURAS', 'meeting_room', '/smartHome/smartLock');
@@ -27,6 +30,19 @@ export class SmartHomeMenuComponent implements OnInit {
     menu_items._icon = icon;
     menu_items._routerLink = routerLink;
     this._items.push(menu_items);
+  }
+
+  retrieveAll(): void {
+    this.devicesService.retrieveAll().subscribe({
+      next: devices => {
+        this._devices = devices;
+        console.log(devices)
+
+
+      },
+      error: err => console.log('Error', err)
+    });
+
   }
 
 }
