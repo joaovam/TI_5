@@ -32,7 +32,9 @@ class Device:
 
     # def __str__(self):
     #     return self.name
-
+    def from_json(body):
+        device  = Device(body['status'],body['name'],body['ID'],body['type_device'],body['temperature'])
+        return device
 
 
 class Arduino:
