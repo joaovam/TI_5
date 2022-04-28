@@ -8,7 +8,7 @@ import { Device } from '../smart-home-components/device';
 })
 export class LightService {
 
-  private devicesUrl: string = 'http://localhost:8000/lights';
+  private devicesUrl: string = 'http://localhost:8000';
   headers = new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
@@ -18,6 +18,9 @@ export class LightService {
 
 
   retrieveAll(): Observable<any> {
-    return this.httpClient.get<any>(this.devicesUrl, { 'headers': this.headers });
+    return this.httpClient.get<any>(this.devicesUrl + '/lights', { 'headers': this.headers });
+  }
+  updateLight(device : Device) : Observable<any>{
+    return this.httpClient.post<any>(this.devicesUrl + '/changeOptions', device,  { 'headers': this.headers });
   }
 }

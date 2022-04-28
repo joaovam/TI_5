@@ -32,6 +32,8 @@ export class LightsComponent implements OnInit {
   changeState(device: Device) {
 
     if (device._status == true)
+      
+    
       device._status = false;
     else
       device._status = true;
@@ -49,6 +51,17 @@ export class LightsComponent implements OnInit {
       error: err => console.log('Error', err)
     });
 
+  }
+
+  updateLight(light : Device): void {
+    this.lightService.updateLight(light).subscribe({
+      next: lights => {
+        console.log(lights)
+        this.retrieveAll();
+
+      },
+      error: err => console.log('Error', err)
+    });
   }
 
 }

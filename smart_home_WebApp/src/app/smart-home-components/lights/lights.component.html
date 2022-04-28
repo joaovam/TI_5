@@ -16,7 +16,7 @@
                 <div class="status_on ml-4">
                     <mat-card-subtitle>status : desligada</mat-card-subtitle>
                     <mat-card-actions>
-                    <button mat-raised-button (click)=changeState(light); style="background-color: white;">
+                    <button mat-raised-button (click)=updateLight(light); style="background-color: white;">
                         <mat-icon style="color: #6FE6B0;">wb_incandescent</mat-icon>
                     </button>
                     <p>LIGAR</p>
@@ -27,7 +27,7 @@
                 <div class="status_off ml-4">
                     <mat-card-subtitle> status : ligada</mat-card-subtitle>
                     <mat-card-actions>
-                        <button mat-raised-button (click)=changeState(light);>
+                        <button mat-raised-button (click)=updateLight(light);>
                             <mat-icon>wb_incandescent</mat-icon>
                         </button>
                         <p>DESLIGAR</p>
