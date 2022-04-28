@@ -54,8 +54,8 @@ def ret_AC(request):
     for dev in arduino.devices:
         if dev.type_device=='AC':
             aux = dev.__dict__
-            aux.pop('_state')
-            aux.pop('id')
+            # aux.pop('_state')
+            # aux.pop('id')
             print(aux)
             response.append(aux)
     print(response)
@@ -66,8 +66,8 @@ def ret_lockers(request):
     for dev in arduino.devices:
         if dev.type_device=='Tranca':
             aux = dev.__dict__
-            aux.pop('_state')
-            aux.pop('id')
+            # aux.pop('_state')
+            # aux.pop('id')
             print(aux)
             response.append(aux)
     print(response)

@@ -37,7 +37,7 @@ urlpatterns = [
     path('changeOptions',change_option),
     path('devices',ret_devices),
     path('lights',ret_lights),
-    path('lockers',ret_lockers),
+    path('locks',ret_lockers),
     path('ac',ret_AC),
     path('',include(router.urls)),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
