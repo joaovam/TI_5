@@ -19,7 +19,7 @@ def close_connection(request):
     return HttpResponse("connection closed")
 
 def change_option(request):
-    print("Em produção")
+    print("===================================================changeOptions em produção======================================")
 
 def ret_devices(request):
 
