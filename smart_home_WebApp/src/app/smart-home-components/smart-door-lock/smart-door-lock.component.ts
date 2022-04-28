@@ -50,4 +50,17 @@ export class SmartDoorLockComponent implements OnInit {
 
   }
 
+  updateLock(lock : Device): void {
+    this.locksService.updateLocks(lock).subscribe({
+      next: updated_lock => {
+        console.log(updated_lock)        
+        lock = updated_lock;
+        console.log(lock.status)
+
+      },
+      error: err => console.log('Error', err)
+    });
+    
+  }
+
 }

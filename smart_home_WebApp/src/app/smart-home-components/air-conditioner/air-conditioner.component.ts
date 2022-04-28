@@ -56,5 +56,31 @@ export class AirConditionerComponent implements OnInit {
     });
 
   }
+  updateStatusAC(ac : Device): void {
+    console.log("ar antigo ", ac)
+    this.acService.updateStatusAC(ac).subscribe({
+      next: updated_ac => {
+        console.log( "updated" ,updated_ac)        
+        ac = updated_ac;
+        console.log(ac.status)
+
+      },
+      error: err => console.log('Error', err)
+    });
+    
+  }
+  updateTemperatureAC(ac : Device): void {
+    console.log("ar antigo ", ac)
+    this.acService.sendUpdateRequest(ac).subscribe({
+      next: updated_ac => {
+        console.log( "updated" ,updated_ac)        
+        ac = updated_ac;
+        console.log(ac.status)
+
+      },
+      error: err => console.log('Error', err)
+    });
+    
+  }
 
 }

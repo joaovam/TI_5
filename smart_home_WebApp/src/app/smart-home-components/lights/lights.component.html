@@ -12,22 +12,22 @@
     <a [routerLink]="">
         <mat-card>
             <mat-card-title>{{light.name}}</mat-card-title>
-            <div class="on" *ngIf="!light._status">                
+            <div class="on" *ngIf="!light.status">                
                 <div class="status_on ml-4">
                     <mat-card-subtitle>status : desligada</mat-card-subtitle>
                     <mat-card-actions>
-                    <button mat-raised-button (click)=updateLight(light); style="background-color: white;">
+                    <button mat-raised-button (click)= updateLight(light); style="background-color: white;">
                         <mat-icon style="color: #6FE6B0;">wb_incandescent</mat-icon>
                     </button>
                     <p>LIGAR</p>
                 </mat-card-actions>
                 </div>
             </div>
-            <div class="off" *ngIf="light._status">
+            <div class="off" *ngIf="light.status">
                 <div class="status_off ml-4">
-                    <mat-card-subtitle> status : ligada</mat-card-subtitle>
+                    <mat-card-subtitle> status : <strong>ligada</strong></mat-card-subtitle>
                     <mat-card-actions>
-                        <button mat-raised-button (click)=updateLight(light);>
+                        <button mat-raised-button (click)= updateLight(light);>
                             <mat-icon>wb_incandescent</mat-icon>
                         </button>
                         <p>DESLIGAR</p>

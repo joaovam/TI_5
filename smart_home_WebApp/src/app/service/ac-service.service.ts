@@ -8,7 +8,7 @@ import { Device } from '../smart-home-components/device';
 })
 export class AcService {
 
-  private acUrl: string = 'http://localhost:8000/ac';
+  private devicesUrl: string = 'http://localhost:8000';
   headers = new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
@@ -18,7 +18,21 @@ export class AcService {
 
 
   retrieveAll(): Observable<any> {
-    return this.httpClient.get<any>(this.acUrl, { 'headers': this.headers });
+    return this.httpClient.get<any>(this.devicesUrl + '/ac', { 'headers': this.headers });
+  }
+
+  updateStatusAC(device : Device) : Observable<any>{
+    device.status = !device.status;
+    return this.sendUpdateRequest(device);
+  }
+  updateTemperatureAC(device : Device) : Observable<any>{
+    return this.sendUpdateRequest(device);
+  }
+
+  sendUpdateRequest(device : Device) : Observable<any> {
+    let body = JSON.stringify(device);
+    console.log('body ' , body);    
+    return this.httpClient.post<any>(this.devicesUrl + '/changeOptions', body,  { 'headers': this.headers });
   }
 
 }

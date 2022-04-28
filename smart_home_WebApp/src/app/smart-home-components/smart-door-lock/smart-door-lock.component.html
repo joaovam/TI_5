@@ -12,22 +12,22 @@
     <a [routerLink]="">
         <mat-card>
             <mat-card-title>{{smartDoorLock.name}}</mat-card-title>
-            <div class="on" *ngIf="!smartDoorLock._status">                
+            <div class="on" *ngIf="!smartDoorLock.status">                
                 <div class="status_on ml-4">
                     <mat-card-subtitle>status : fechada</mat-card-subtitle>
                     <mat-card-actions>
-                    <button mat-raised-button (click)=changeState(smartDoorLock); style="background-color: white;">
+                    <button mat-raised-button (click)=updateLock(smartDoorLock); style="background-color: white;">
                         <mat-icon style="color: #6FE6B0;">lock </mat-icon>
                     </button>
                     <p>ABRIR</p>
                 </mat-card-actions>
                 </div>
             </div>
-            <div class="off" *ngIf="smartDoorLock._status">
+            <div class="off" *ngIf="smartDoorLock.status">
                 <div class="status_off ml-4">
-                    <mat-card-subtitle> status : aberta</mat-card-subtitle>
+                    <mat-card-subtitle> status : <strong> aberta </strong></mat-card-subtitle>
                     <mat-card-actions>
-                        <button mat-raised-button (click)=changeState(smartDoorLock);>
+                        <button mat-raised-button (click)=updateLock(smartDoorLock);>
                             <mat-icon>lock_open</mat-icon>
                         </button>
                         <p>FECHAR</p>

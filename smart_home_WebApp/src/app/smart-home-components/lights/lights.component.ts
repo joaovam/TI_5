@@ -31,13 +31,11 @@ export class LightsComponent implements OnInit {
   }
   changeState(device: Device) {
 
-    if (device._status == true)
-      
-    
-      device._status = false;
+    if (device.status == true)    
+      device.status = false;
     else
-      device._status = true;
-    console.log("to aqui" + device._status);
+      device.status = true;
+    console.log("to aqui" + device.status);
   }
 
   retrieveAll(): void {
@@ -45,7 +43,8 @@ export class LightsComponent implements OnInit {
       next: lights => {
 
         this.lights = lights.Devices;
-        console.log(lights)
+        console.log('liiiiights' ,this.lights)
+       // console.log("lights " + lights[0] + lights[1])
 
       },
       error: err => console.log('Error', err)
@@ -55,13 +54,15 @@ export class LightsComponent implements OnInit {
 
   updateLight(light : Device): void {
     this.lightService.updateLight(light).subscribe({
-      next: lights => {
-        console.log(lights)
-        this.retrieveAll();
+      next: updated_light => {
+        console.log(updated_light)        
+        light = updated_light;
+        console.log(light.status)
 
       },
       error: err => console.log('Error', err)
     });
+    
   }
 
 }
