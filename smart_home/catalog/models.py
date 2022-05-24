@@ -43,7 +43,7 @@ class Arduino:
     Used to store Arduino's Address, port and devices
     """
 
-
+    devices = []
 
     def __init__(self, ip: str):
 

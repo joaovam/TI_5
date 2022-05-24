@@ -12,7 +12,7 @@ from rest_framework import viewsets
 from smart_home.serializers import ExampleModelSerializer
 from .models import *
 
-arduino = Arduino(ip="192.168.1.60", port=1234)
+arduino = Arduino(ip="192.168.1.60")
 
 
 def turn_light_on(request):
@@ -41,14 +41,25 @@ def set_device(original_device, new_device):
         print("status foi alterado")
         status = 0 if not new_device.status else 1
         if new_device.type_device =="luz":
+            print(f"http://{arduino.address}/luz?status={status}&id={new_device.ID}")
+            requests.get(f"http://{arduino.address}/luz?status={status}&id={new_device.ID}")
 
-            requests.get(f"{arduino.address}/luz?status={status}&id={new_device.ID}")
+        elif new_device.type_device == "tranca":
+            requests.get(f"http://{arduino.address}/tranca?status={status}")
+            print(f"http://{arduino.address}/tranca?status={status}")
         else:
-            requests.get(f"{arduino.address}/tranca?status={status}")
-    if temperature_changed:
-        response_device['temperature'] = new_device.temperature
-        requests.get(f"{arduino.address}/AC?temperatura={new_device.temperature}")
-        print("temperatura foi alterada")
+            if temperature_changed:
+                response_device['temperature'] = new_device.temperature
+                print(f"http://{arduino.address}/AC?temperatura={new_device.temperature}&status={new_device.status}")
+                requests.get(f"http://{arduino.address}/AC?temperatura={new_device.temperature}&status={new_device.status}")
+                print("temperatura foi alterada")
+            else:
+                print(f"http://{arduino.address}/AC?temperatura={new_device.temperature}&status={new_device.status}")
+                requests.get(
+                    f"http://{arduino.address}/AC?temperatura={new_device.temperature}&status={new_device.status}")
+                print("temperatura nao foi alterada")
+
+
     print("==================== fazer request para arduino============")
 
     print(response_device)
@@ -58,10 +69,12 @@ def set_device(original_device, new_device):
 def change_option(request):
     print(
         "===================================================changeOptions em implementação======================================")
-    body = json.loads(request.body)
+    body = dict(json.loads(request.body))
     # body = body['Device']
-    print(body)
+    body = body['Device']
     for device in arduino.devices:
+        print(body)
+
         if device.ID is body['ID']:
             print(f"device inicial{device}")
             new_device = Device.from_json(body)
