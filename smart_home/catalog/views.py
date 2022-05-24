@@ -1,5 +1,6 @@
 import http.client
 
+import requests
 from django.shortcuts import render, HttpResponseRedirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
@@ -34,11 +35,18 @@ def set_device(original_device, new_device):
     if status_changed:
         response_device['status'] = new_device.status
         print("status foi alterado")
+        status = 0 if not new_device.status else 1
+        if new_device.type_device =="luz":
 
+            requests.get(f"{arduino.address}/luz?status={status}&id={new_device.ID}")
+        else:
+            requests.get(f"{arduino.address}/tranca?status={status}")
     if temperature_changed:
         response_device['temperature'] = new_device.temperature
+        requests.get(f"{arduino.address}/AC?temperatura={new_device.temperature}")
         print("temperatura foi alterada")
     print("==================== fazer request para arduino============")
+
     print(response_device)
 
 @csrf_exempt
@@ -57,6 +65,7 @@ def change_option(request):
             arduino.devices.append(new_device)
             print(f"novo device{new_device}")
             print(f"device final:{device}")
+
             return JsonResponse(body)
 
     return HttpResponse("Dispositivo não encontrado")
