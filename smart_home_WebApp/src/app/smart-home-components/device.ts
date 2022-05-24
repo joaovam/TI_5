@@ -21,12 +21,12 @@ export class Device {
         this._type_device = type;
     }
 
-    set status(type: string) {
-        this._type_device = type;
+    set status(status: boolean) {
+        this._status = status;
     }
 
     get status() {
-        return this._type_device;
+        return this._status;
     }
     get type_device() {
         return this._type_device;

@@ -13,22 +13,22 @@
         <mat-card-title style="padding-left: 30%; margin-bottom: 2em;">{{ac.name}}</mat-card-title>
         <div class = "row">
         <div class="col-6" style="padding-left: 2em;" >
-            <div class="on col-6" *ngIf="!ac._status">
+            <div class="on col-6" *ngIf="!ac.status">
                 <div class="status_on ml-4">
                     <mat-card-subtitle>status : desligado</mat-card-subtitle>
                     <mat-card-actions>
-                        <button mat-raised-button (click)=changeState(ac); style="background-color: white;">
+                        <button mat-raised-button (click)=updateStatusAC(ac); style="background-color: white;">
                             <mat-icon style="color: #6FE6B0;">wb_incandescent</mat-icon>
                         </button>
                         <p>LIGAR</p>
                     </mat-card-actions>
                 </div>
             </div>
-            <div class="off col-6" *ngIf="ac._status">
+            <div class="off col-6" *ngIf="ac.status">
                 <div class="status_off ml-4">
-                    <mat-card-subtitle> status : ligado</mat-card-subtitle>
+                    <mat-card-subtitle> status : <strong>ligado</strong></mat-card-subtitle>
                     <mat-card-actions>
-                        <button mat-raised-button (click)=changeState(ac);>
+                        <button mat-raised-button (click)=updateStatusAC(ac);>
                             <mat-icon>wb_incandescent</mat-icon>
                         </button>
                         <p>DESLIGAR</p>
@@ -41,11 +41,10 @@
                 <form>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Temperatura</mat-label>
-                        <input type="number" min="16" name="temp" [(ngModel)]="ac.temperature" matInput placeholder="Ex. 20"
-                            (change)="print()">
+                        <input type="number" min="16" name="temp" [(ngModel)]="ac.temperature" matInput placeholder="Ex. 20">
                     </mat-form-field>
                 </form>
-                <button mat-raised-button (click)="print()"
+                <button mat-raised-button (click)="updateTemperatureAC(ac);"
                     style="color: white; background-color: #6FE6B0;">Salvar</button>
             </div>
         </div>

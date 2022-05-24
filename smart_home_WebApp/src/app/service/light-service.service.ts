@@ -21,6 +21,9 @@ export class LightService {
     return this.httpClient.get<any>(this.devicesUrl + '/lights', { 'headers': this.headers });
   }
   updateLight(device : Device) : Observable<any>{
-    return this.httpClient.post<any>(this.devicesUrl + '/changeOptions', device,  { 'headers': this.headers });
+    device.status = !device.status;
+    let body = JSON.stringify(device);
+    console.log('body ' , body);    
+    return this.httpClient.post<any>(this.devicesUrl + '/changeOptions', body,  { 'headers': this.headers });
   }
 }
