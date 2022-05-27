@@ -1,7 +1,7 @@
 from typing import Union, List
 
 from django.db import models
-import socket
+import requests
 from enum import Enum     # for enum34, or the stdlib version
 # Create your models here.
 class ExampleModel(models.Model):
@@ -42,22 +42,20 @@ class Arduino:
     Arduino class
     Used to store Arduino's Address, port and devices
     """
-    ip: str
-    port: int
 
+    devices = []
 
-    def __init__(self, ip: str, port: int):
+    def __init__(self, ip: str):
 
-        self.address = (ip, port)
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.devices = []
+        self.address = ip
         self.devices.append(Device(False,"luz da sala","0","luz"))
         self.devices.append(Device(False, "luz do quarto", "1", "luz"))
         self.devices.append(Device(False,"Ar Condicionado","2","AC",20))
         self.devices.append(Device(False,"Tranca da porta","3","Tranca"))
 
-    def send_message(self, message: bytes):
-        self.sock.sendto(message, self.address)
+    def send_message(self, message: str):
+        requests.get(f"{self.address}/{message}")
+
 
     def close_connection(self):
         self.sock.close()
